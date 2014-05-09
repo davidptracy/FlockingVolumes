@@ -6,7 +6,7 @@ class guiCube {
   //mouse interaction
   boolean dragging = false;
   PVector dragOffset;
-  
+
   PImage gCube;
 
   guiCube(float x, float y, PImage img) {
@@ -33,25 +33,28 @@ class guiCube {
   void display() {
     imageMode(CENTER);
     ellipseMode(RADIUS);
-    
+
     noFill();
-    if(dragging){
-    fill(255,0,0,25);
-    strokeWeight(1+sin(r));
-    ellipse(location.x, location.y, radius, radius);
+    if (dragging) {
+      fill(255, 0, 0, 25);
+      strokeWeight(1+sin(r));
+      ellipse(location.x, location.y, radius, radius);
     }
-    
-    image(gCube, location.x, location.y, 50, 50);
+
+    image(gCube, location.x, location.y, 25, 25);
   }
 
   void clicked(int mx, int my) {
-    float d = dist(mx, my, location.x, location.y);
-    if (d < 50) {
-      dragging = true;
-      dragOffset.x = location.x-mx;
-      dragOffset.y = location.y-my;
+    if ( mx < 200 && my > height - 200) {
+      float d = dist(mx, my, location.x, location.y);
+      if (d < 50) {
+        dragging = true;
+        dragOffset.x = location.x-mx;
+        dragOffset.y = location.y-my;
+      }
     }
   }
+
 
   void stopDragging() {
     dragging = false;
@@ -59,8 +62,10 @@ class guiCube {
 
   void drag(int mx, int my) {
     if (dragging) {
-      location.x = mx + dragOffset.x;
-      location.y = my + dragOffset.y;
+      if ( mx < 200 && my > height - 200) {
+        location.x = mx + dragOffset.x;
+        location.y = my + dragOffset.y;
+      }
     }
   }
 }

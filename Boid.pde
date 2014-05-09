@@ -53,11 +53,11 @@ class Boid {
       history.add(location.get());
     }
 
-
     for (int i=0; i<history.size(); i++) {   
       if (i > 0) {   
         PVector currentLoc = new PVector(history.get(i).x, history.get(i).y, history.get(i).z);
         PVector previousLoc = new PVector(history.get(i-1).x, history.get(i-1).y, history.get(i-1).z);
+        strokeWeight(.5);
         stroke(map(dist(currentLoc.x, currentLoc.y, currentLoc.z, 0, 0, 0), 0, 1250, 0, 100), 100, 100, 50);
         line(currentLoc.x, currentLoc.y, currentLoc.z, previousLoc.x, previousLoc.y, previousLoc.z );
       }

@@ -20,6 +20,7 @@ class Flock {
 
   void addBoid(Boid b) {
     boids.add(b);
+    vb.addLocation(b.location);
   }
 }
 
